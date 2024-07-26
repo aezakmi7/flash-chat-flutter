@@ -3,6 +3,25 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id("com.google.gms.google-services")
+}
+
+dependencies {
+  // ...
+
+  // Import the Firebase BoM
+  implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+
+  // When using the BoM, you don't specify versions in Firebase library dependencies
+
+  // Add the dependency for the Firebase SDK for Google Analytics
+  implementation("com.google.firebase:firebase-analytics")
+
+  // TODO: Add the dependencies for any other Firebase products you want to use
+  // See https://firebase.google.com/docs/android/setup#available-libraries
+  // For example, add the dependencies for Firebase Authentication and Cloud Firestore
+  implementation("com.google.firebase:firebase-auth")
+  implementation("com.google.firebase:firebase-firestore")
 }
 
 def localProperties = new Properties()
@@ -38,8 +57,8 @@ android {
         applicationId = "com.example.flash_chat_flutter"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 30
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
